@@ -3,19 +3,22 @@
 constexpr int WIDTH   { 800 };
 constexpr int HEIGHT  { 600 };
 constexpr auto* TITLE { "Celular" };
-//datos del mundo
-constexpr int COL  { 8 };
-constexpr int ROW  { 6 };
+//dades mon
+constexpr int ROW  { 8 };
+constexpr int COL  { 7 };
+constexpr int ROW_WIDTH  { WIDTH/ROW };
+constexpr int COL_HEIGHT { HEIGHT/COL };
+constexpr int M_CELLS  { ROW*COL }; //total cel·les mon
 
 struct Mundo {
-   bool estado[COL*ROW]; //estado 1 vivo, 0 muerta
+   bool state[M_CELLS]; //state 1 vivo, 0 muerta
 };
 
 void initMundo(Mundo mund){
-   bool est{};
-   for(int i=0; i<(COL*ROW);i++){
-      mund.estado[i] = est;
-      est = !est;
+   bool st{};
+   for(int i=0; i<(M_CELLS);i++){
+      mund.state[i] = st;
+      st = !st;
    }
 }
 
@@ -24,14 +27,17 @@ void draw()
 {
    Color color{};
    bool aux{};
+
    BeginDrawing();
-   //DrawRectangle(0,0,16,12,WHITE);
-   for(int i{}; i<ROW; i++)
-      for(int j{}; j<COL; j++){
+   
+   for(int i{}; i<ROW; i++){
+      for(int j{}; j<COL; j++){ //el sistema de coordenades de raylib comença en 0,0 dalt a l'esquerra i va en diagonal cap avall
          color = aux ? RED : YELLOW;
-         DrawRectangle(i*(WIDTH/ROW),j*(HEIGHT/COL),WIDTH/ROW,HEIGHT/COL, color);
+         DrawRectangle(i*ROW_WIDTH,j*COL_HEIGHT,ROW_WIDTH,COL_HEIGHT, color);
          aux = !aux;
       }
+   }
+
    EndDrawing();
 }
 
