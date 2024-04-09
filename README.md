@@ -13,3 +13,6 @@ Repositori per a posar tots els exercicis que fem durant el 2n cuadrimestre.
 
 ## Entrenamiento
 Exercici per a generar un autòmata cel·lular.
+
+## cPunteroThis
+Explicació de com funciona el puntero **this** fent un xicotet exercici en CPP, C i Ensamblador. Cadascú el fa d'una manera pero tots es fonamenten en el mateix.

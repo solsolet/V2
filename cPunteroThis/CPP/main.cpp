@@ -7,6 +7,7 @@ using sdword = int;
 //class Entity
 //public:
 struct Entity {
+    int x;
     int vx;
     Color color;
 };
@@ -25,31 +26,31 @@ constexpr Color     PLAYER_COLOR    { BLUE };
 constexpr Color     ENEMY_COLOR     { YELLOW };
 
 class Game {
-    Entity player{ PLAYER_START_X, 0, PLAYER_COLOR };
-    bool playing { true };
-    Entity enemies [NUM_ENEMIES]{
-        { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR },
-        { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR },
-        { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR },
-        { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR }
-    };
-    explicit Game(){
-        InitWindow(SCR_WIDTH, SCR_HEIGHT, WINDOW_TITLE);
-    }
-    void stop(){
-        playing = not IsKeyPressed(KEY_SPACE);
-    }
-    void draw(){
-        BeginDrawing();
-        ClearBackground(BLACK);
+    public:
+        Entity player{ PLAYER_START_X, 0, PLAYER_COLOR };
+        bool playing { true };
+        Entity enemies [NUM_ENEMIES]{
+            { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR },
+            { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR },
+            { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR },
+            { ENEMIES_START_X, ENEMY_VX, ENEMY_COLOR }
+        };
+        explicit Game(){
+            InitWindow(SCR_WIDTH, SCR_HEIGHT, WINDOW_TITLE);
+        }
+        void stop(){
+            playing = not IsKeyPressed(KEY_SPACE);
+        }
+        void draw(){
+            BeginDrawing();
+            ClearBackground(BLACK);
 
-        DrawRectangle(player.vx, 0, ENTITY_WIDTH, ENTITY_HEIGHT, PLAYER_COLOR);
-        EndDrawing();
-    }
-    ~Game(){
-        CloseWindow();
-    }
-
+            DrawRectangle(player.x, 0, ENTITY_WIDTH, ENTITY_HEIGHT, PLAYER_COLOR);
+            EndDrawing();
+        }
+        ~Game(){
+            CloseWindow();
+        }
 };
 
 int main() {
