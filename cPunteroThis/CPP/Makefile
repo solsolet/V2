@@ -1,0 +1,1 @@
+gcc -Wall -Wextra -Wconversion -Wpedantic -std=c++23 main.cpp -lraylib
